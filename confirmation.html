@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order Confirmation - Sherwin's Corner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-green-50 text-gray-900">
+  <div class="max-w-2xl mx-auto p-6 text-center">
+    <h1 class="text-4xl font-bold text-green-700 mb-4">🎉 Thank You!</h1>
+    <p class="text-lg mb-2">Your order has been placed successfully.</p>
+    <p class="mb-6">Order ID: <span class="font-semibold" id="orderId">#SHW123456</span></p>
+
+    <div class="bg-white p-4 rounded shadow text-left mb-4">
+      <h2 class="text-xl font-semibold mb-2">Order Summary</h2>
+      <ul class="list-disc ml-5" id="orderSummary"></ul>
+      <p class="mt-3">Shipping Method: <span id="shippingMethod">-</span></p>
+      <p>Payment Method: <span id="paymentMethod">-</span></p>
+      <p class="font-bold mt-2">Total Paid: <span id="totalPaid">₹0</span></p>
+    </div>
+    
+
+    <div id="paymentDetails" class="bg-white p-4 rounded shadow text-left mb-4 hidden">
+      <h2 class="text-xl font-semibold mb-3">Complete Your Payment</h2>
+
+      <!-- UPI QR Code -->
+      <div id="upiSection" class="hidden text-center">
+        <p class="mb-2">Scan the QR code below using your UPI app:</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=youremail@upi&pn=SherwinCorner&am=1&cu=INR" alt="UPI QR" class="mx-auto w-48 h-48" id="upiQRCode">
+        <p class="text-sm text-gray-600 mt-2">Note: QR auto-updates with amount</p>
+      </div>
+
+      <!-- Card Payment Form -->
+      <div id="cardSection" class="hidden">
+        <form class="space-y-3">
+          <div>
+            <label class="block text-sm font-medium">Card Number</label>
+            <input type="text" maxlength="16" placeholder="1234 5678 9012 3456" class="w-full border rounded px-3 py-2" />
+          </div>
+          <div class="flex gap-3">
+            <div class="w-1/2">
+              <label class="block text-sm font-medium">Expiry</label>
+              <input type="text" placeholder="MM/YY" maxlength="5" class="w-full border rounded px-3 py-2" />
+            </div>
+            <div class="w-1/2">
+              <label class="block text-sm font-medium">CVV</label>
+              <input type="password" maxlength="3" class="w-full border rounded px-3 py-2" />
+            </div>
+          </div>
+          <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Pay Now</button>
+        </form>
+      </div>
+    </div>
+
+    <a href="shop.html">
+      <button class="bg-blue-600 text-white px-6 py-2 rounded">Continue Shopping</button>
+    </a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const data = JSON.parse(localStorage.getItem("order") || "{}");
+
+      // Set Order ID
+      document.querySelector("#orderId").textContent = data.orderId || "#SHW000000";
+
+      const summaryEl = document.querySelector("#orderSummary");
+      summaryEl.innerHTML = "";
+
+      // Handle missing or empty order
+      if (!data.items || data.items.length === 0) {
+        summaryEl.innerHTML = "<li>No order found. Please return to the shop.</li>";
+        document.querySelector("#shippingMethod").textContent = "-";
+        document.querySelector("#paymentMethod").textContent = "-";
+        document.querySelector("#totalPaid").textContent = "₹0";
+        return;
+      }
+
+      // Build order summary
+      let total = 0;
+      data.items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.quantity}x ${item.name} - ₹${item.price * item.quantity}`;
+        summaryEl.appendChild(li);
+        total += item.price * item.quantity;
+      });
+
+      // Add shipping cost if applicable (check substring, because shippingMethod may contain details)
+      const shippingCost = data.shippingMethod && data.shippingMethod.includes("Express") ? 100 : 0;
+      total += shippingCost;
+
+      // Set shipping & payment methods
+      document.querySelector("#shippingMethod").textContent = data.shippingMethod || "-";
+      document.querySelector("#paymentMethod").textContent = data.paymentMethod || "-";
+
+      // Set total paid
+      document.querySelector("#totalPaid").textContent = "₹" + total;
+
+      // Clear localStorage after displaying the order
+      localStorage.removeItem("order");
+    });
+  </script>
+</body>
+</html>

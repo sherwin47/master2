@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sherwin Shaji - Portfolio</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Sherwin Shaji - Portfolio, Education, Goals, Achievements" />
+  <meta name="author" content="Sherwin Shaji" />
+
+  <!-- Open Graph / Social Media Preview -->
+  <meta property="og:title" content="Sherwin Shaji - Portfolio" />
+  <meta property="og:description" content="Personal introduction portfolio site of Sherwin Shaji." />
+  <meta property="og:image" content="sherwin-photo1.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sherwin47.github.io" />
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="assets/icons/site.webmanifest">
+
+
+ <!-- Tailwind CSS with DaisyUI -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            neon: '#39FF14',
+          }
+        }
+      },
+      plugins: [tailwindcss.plugins && tailwindcss.plugins.daisyui || {}]
+    }
+  </script>
+
+  <!-- DaisyUI via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/daisyui@latest"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</head>
+
+
+<body class="bg-white dark:bg-black text-gray-900 dark:text-white px-4 py-6 transition-colors duration-300">
+
+  <div id="cookie-consent" class="fixed bottom-4 left-4 right-4 bg-gray-900 text-white p-4 rounded-lg shadow-lg flex flex-col md:flex-row justify-between items-center gap-4 z-50 hidden">
+    <p class="text-sm max-w-xl">
+      We use cookies to enhance your experience on this site. By clicking "Accept", you consent to our use of cookies.
+    </p>
+    <div class="flex gap-3">
+      <button id="accept-cookies" class="bg-[#39FF14] hover:bg-[#2fff00] text-black px-4 py-2 rounded font-semibold">Accept</button>
+      <button id="reject-cookies" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded font-semibold">Reject</button>
+    </div>
+  </div>
+
+  <div id="loader" class="fixed inset-0 bg-white dark:bg-black flex items-center justify-center z-50">
+  <div class="animate-spin rounded-full h-16 w-16 border-4 border-t-[#39FF14] border-b-[#39FF14] border-l-transparent border-r-transparent"></div>
+  </div>
+
+  
+
+    <!-- Header -->
+    <header class="bg-gradient-to-br from-[#39FF14] to-green-600 text-black text-center py-16 rounded-xl mb-8 shadow-lg">
+      <h1 class="text-4xl font-bold mb-2">Welcome to My Portfolio</h1>
+      <p class="text-lg mb-6">
+        Hi, I'm <strong>Sherwin Shaji</strong>. This space captures my daily thoughts, progress, and moments of growth — one day at a time.
+      </p>
+
+      <!-- Lottie Animation -->
+      <div class="flex justify-center">
+        <lottie-player 
+          src="https://assets7.lottiefiles.com/packages/lf20_jcikwtux.json" 
+          background="transparent" 
+          speed="1" 
+          style="width: 300px; height: 300px;" 
+          loop autoplay>
+        </lottie-player>
+      </div>
+    </header>
+
+
+    <section id="welcome" class="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl mb-10 border border-neon relative overflow-hidden">
+      <!-- Decorative glow background -->
+      <div class="absolute inset-0 opacity-10 blur-2xl bg-gradient-to-tr from-neon to-green-400 dark:from-neon dark:to-lime-500 z-0"></div>
+
+      <div class="relative z-10 flex flex-col md:flex-row items-center justify-center gap-6">
+        <!-- Glowing photo -->
+        <div class="relative">
+          <div class="absolute inset-0 rounded-full bg-neon opacity-30 blur-xl animate-pulse"></div>
+          <img src="sherwin-photo1.jpg" alt="Photo of Sherwin Shaji"
+              class="w-48 h-48 rounded-full object-cover border-4 border-neon shadow-xl relative z-10" />
+        </div>
+
+        <!-- Welcome text -->
+        <div class="text-center md:text-left">
+          <h2 class="text-3xl font-bold text-neon mb-2 animate-fade-in-down">👋 Welcome!</h2>
+          <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-md">
+            I'm <span class="font-semibold text-neon">Sherwin Shaji</span>, a passionate developer and tech enthusiast. Explore my journey, goals, and achievements on this portfolio.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="daily-logs" class="py-12 bg-white dark:bg-gray-900 rounded-lg mb-10 shadow-lg">
+      <h2 class="text-3xl font-semibold text-center mb-10 text-neon">🗓️ Daily Learning Log Calendar</h2>
+
+      <!-- Lottie Animation (Optional) -->
+      <div class="flex justify-center mb-8">
+        <lottie-player 
+          src="https://assets10.lottiefiles.com/packages/lf20_0yfsb3a1.json" 
+          background="transparent" 
+          speed="1" 
+          style="width: 150px; height: 150px;" 
+          loop autoplay>
+        </lottie-player>
+      </div>
+
+      <!-- Calendar Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+        
+        <!-- Day 1 -->
+        <a href="https://sherwin47.github.io/sherwinportfolio/" target="_blank"
+          class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-center hover:shadow-xl border-2 border-transparent hover:border-neon transition-all duration-300">
+          <h3 class="text-xl font-bold text-neon">Day 1</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">HTML Basics</p>
+        </a>
+
+        <!-- Day 2 -->
+        <a href="https://sherwin47.github.io/sherwinsportfolio/" target="_blank"
+          class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-center hover:shadow-xl border-2 border-transparent hover:border-neon transition-all duration-300">
+          <h3 class="text-xl font-bold text-neon">Day 2</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Intro to CSS</p>
+        </a>
+
+        <!-- Day 3 -->
+        <a href="https://sherwin47.github.io/sherwinfinalportfolio/" target="_blank"
+          class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-center hover:shadow-xl border-2 border-transparent hover:border-neon transition-all duration-300">
+          <h3 class="text-xl font-bold text-neon">Day 3</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Box Model & Flexbox</p>
+        </a>
+
+        <!-- Day 4 -->
+        <a href="https://sherwin47.github.io/portfolioday4/" target="_blank"
+          class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-center hover:shadow-xl border-2 border-transparent hover:border-neon transition-all duration-300">
+          <h3 class="text-xl font-bold text-neon">Day 4</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Shop Layout</p>
+        </a>
+
+        <!-- Day 5 -->
+        <a href="https://sherwin47.github.io/dayfive/" target="_blank"
+          class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-center hover:shadow-xl border-2 border-transparent hover:border-neon transition-all duration-300">
+          <h3 class="text-xl font-bold text-neon">Day 5</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Payment System</p>
+        </a>
+
+      </div>
+    </section>
+
+
+    <script>
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+
+      // Function to update icon based on theme
+      function updateIcon() {
+        if (body.classList.contains('dark')) {
+          themeIcon.textContent = '🌙';
+        } else {
+          themeIcon.textContent = '🌞';
+        }
+      }
+
+      // Initialize theme on load
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        body.classList.add('dark');
+      }
+      updateIcon();
+
+      // Theme toggle button click
+      themeToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        if (body.classList.contains('dark')) {
+          localStorage.setItem('theme', 'dark');
+        } else {
+          localStorage.setItem('theme', 'light');
+        }
+        updateIcon();
+      });
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+      <footer class="text-center text-sm text-gray-600 dark:text-gray-400 mt-10 mb-4">
+        © 2025 Sherwin Shaji. All rights reserved.
+      </footer>
+    </script>
+
+
+
+    <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        loader.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => loader.remove(), 500); // Fully remove after fade-out
+      }
+    });
+  </script>
+</body>

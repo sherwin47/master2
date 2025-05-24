@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Sherwin's Corner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">🧾 Checkout</h1>
+
+    <!-- Contact Info -->
+    <div class="bg-white p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold mb-4">Contact Information</h2>
+      <input class="w-full p-2 border mb-3" type="text" placeholder="Full Name">
+      <input class="w-full p-2 border mb-3" type="email" placeholder="Email">
+      <input class="w-full p-2 border" type="tel" placeholder="Phone Number">
+    </div>
+
+    <!-- Shipping Info -->
+    <div class="bg-white p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold mb-4">Shipping Address</h2>
+      <input class="w-full p-2 border mb-3" type="text" placeholder="Address Line 1">
+      <input class="w-full p-2 border mb-3" type="text" placeholder="Address Line 2">
+      <div class="grid grid-cols-2 gap-4">
+        <input class="p-2 border mb-3" type="text" placeholder="City">
+        <input class="p-2 border mb-3" type="text" placeholder="State">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <input class="p-2 border mb-3" type="text" placeholder="ZIP Code">
+        <input class="p-2 border mb-3" type="text" placeholder="Country">
+      </div>
+    </div>
+
+    <!-- Delivery Method -->
+    <div class="bg-white p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold mb-4">Delivery Method</h2>
+      <label class="block mb-2">
+        <input type="radio" name="shipping" class="mr-2" value="Standard" checked> Standard (Free, 5-7 days)
+      </label>
+      <label class="block">
+        <input type="radio" name="shipping" class="mr-2" value="Express"> Express (+₹100, 2-3 days)
+      </label>
+    </div>
+
+    <!-- Payment Method -->
+    <div class="bg-white p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold mb-4">Payment Method</h2>
+      <label class="block mb-2">
+        <input type="radio" name="payment" class="mr-2" value="Card"> Credit/Debit Card
+      </label>
+      <label class="block mb-2">
+        <input type="radio" name="payment" class="mr-2" value="UPI"> UPI
+      </label>
+      <label class="block">
+        <input type="radio" name="payment" class="mr-2" value="COD"> Cash on Delivery
+      </label>
+    </div>
+
+    <!-- Conditional Payment Details -->
+    <div id="paymentDetails" class="bg-white p-6 rounded shadow mb-6 hidden">
+      <h2 class="text-xl font-semibold mb-3">Payment Details</h2>
+
+      <!-- UPI Section -->
+      <div id="upiSection" class="hidden text-center">
+        <p class="mb-2">Scan the QR code below to pay via UPI:</p>
+        <img id="upiQR" src="" alt="UPI QR Code" class="mx-auto w-48 h-48">
+        <p class="text-sm text-gray-600 mt-2">Amount is auto-filled in UPI app</p>
+      </div>
+
+      <!-- Card Section -->
+      <div id="cardSection" class="hidden">
+        <form class="space-y-3">
+          <input type="text" placeholder="Card Number" maxlength="16" class="w-full border px-3 py-2 rounded">
+          <div class="flex gap-4">
+            <input type="text" placeholder="MM/YY" maxlength="5" class="w-1/2 border px-3 py-2 rounded">
+            <input type="password" placeholder="CVV" maxlength="3" class="w-1/2 border px-3 py-2 rounded">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Summary and Place Order -->
+    <div class="bg-white p-6 rounded shadow">
+      <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
+      <p>Subtotal: ₹<span id="subtotal">0</span></p>
+      <p>Shipping: ₹<span id="shipping">0</span></p>
+      <p class="font-bold text-lg">Total: ₹<span id="total">0</span></p>
+      <button id="placeOrderBtn" class="mt-4 w-full bg-green-600 text-white py-2 rounded">✅ Place Order</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const subtotalEl = document.getElementById("subtotal");
+      const shippingEl = document.getElementById("shipping");
+      const totalEl = document.getElementById("total");
+
+      let subtotal = 0;
+      cart.forEach(item => {
+        subtotal += item.price * item.quantity;
+      });
+
+      subtotalEl.textContent = subtotal;
+      shippingEl.textContent = "0";
+      totalEl.textContent = subtotal;
+
+      // Handle shipping method
+      const shippingRadios = document.querySelectorAll("input[name='shipping']");
+      shippingRadios.forEach(radio => {
+        radio.addEventListener("change", () => {
+          const shippingCost = radio.value === "Express" ? 100 : 0;
+          shippingEl.textContent = shippingCost;
+          totalEl.textContent = subtotal + shippingCost;
+        });
+      });
+
+      // Handle payment method display
+      const paymentRadios = document.querySelectorAll("input[name='payment']");
+      const paymentDetails = document.getElementById("paymentDetails");
+      const upiSection = document.getElementById("upiSection");
+      const cardSection = document.getElementById("cardSection");
+      const upiQR = document.getElementById("upiQR");
+
+      paymentRadios.forEach(radio => {
+        radio.addEventListener("change", () => {
+          const total = document.getElementById("total").textContent;
+          paymentDetails.classList.remove("hidden");
+
+          if (radio.value === "UPI") {
+            upiSection.classList.remove("hidden");
+            cardSection.classList.add("hidden");
+            upiQR.src = `https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=yourupi@bank&pn=SherwinCorner&am=${total}&cu=INR`;
+          } else if (radio.value === "Card") {
+            cardSection.classList.remove("hidden");
+            upiSection.classList.add("hidden");
+          } else {
+            paymentDetails.classList.add("hidden");
+            upiSection.classList.add("hidden");
+            cardSection.classList.add("hidden");
+          }
+        });
+      });
+
+      // Place order
+      const placeOrderBtn = document.getElementById("placeOrderBtn");
+      placeOrderBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const shipping = document.querySelector("input[name='shipping']:checked");
+        const payment = document.querySelector("input[name='payment']:checked");
+
+        const shippingMethod = shipping ? shipping.value : "Standard";
+        const paymentMethod = payment ? payment.value : "Not selected";
+        const shippingCost = shippingMethod === "Express" ? 100 : 0;
+        const total = subtotal + shippingCost;
+
+        const order = {
+          orderId: "SHW" + Math.floor(Math.random() * 1000000),
+          items: cart,
+          subtotal,
+          shipping: shippingCost,
+          total,
+          shippingMethod,
+          paymentMethod
+        };
+
+        localStorage.setItem("order", JSON.stringify(order));
+        localStorage.removeItem("cart");
+        window.location.href = "confirmation.html";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop - Sherwin's Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer src="shop.js"></script>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center p-4 bg-gray-800 text-white">
+    <div class="text-xl font-bold">🛍️ Sherwin's Corner</div>
+    <div class="space-x-4 hidden md:flex">
+      <a href="#" class="hover:underline">Home</a>
+      <a href="#products" class="hover:underline">Products</a>
+      <button id="cartBtn" class="relative hover:underline">
+        Cart 🛒
+        <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+      </button>
+    </div>
+    <!-- Mobile menu icon -->
+    <button class="md:hidden" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">☰</button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="bg-gray-700 text-white p-4 hidden md:hidden">
+    <a href="#" class="block py-1">Home</a>
+    <a href="#products" class="block py-1">Products</a>
+    <button id="cartBtnMobile" class="relative block py-1">
+      Cart 🛒
+      <span id="cartCountMobile" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+    </button>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="text-center py-12 px-4 bg-gray-100 dark:bg-gray-800">
+    <h1 class="text-4xl font-bold mb-2">One Shop. Endless Styles</h1>
+    <p class="text-gray-600 dark:text-gray-300">Outfits That Speak Louder.</p>
+  </section>
+
+  <section id="products" class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <!-- Product Card Template -->
+        <div class="border rounded-xl p-4 shadow hover:shadow-xl transition" data-name="Black T-shirt" data-price="450">
+            <img src="sherwin-tshirt.jpg" alt="T-shirt" class="w-full h-64 object-cover mb-3 rounded" />
+            <h2 class="text-lg font-semibold">Classic Tee</h2>
+            <p class="text-sm">₹450</p>
+            <div class="mt-2 flex items-center space-x-2">
+              <select class="size-select w-full border rounded px-2 py-1 text-sm">
+                <option value="" disabled selected>Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+              <button class="bg-blue-500 text-white px-3 py-1 rounded add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="border rounded-xl p-4 shadow hover:shadow-xl transition" data-name="MI Jersey" data-price="750">
+            <img src="sherwin-mi.jpg" alt="MI Jersey" class="w-full h-64 object-cover mb-3 rounded" />
+            <h2 class="text-lg font-semibold">MI Jersey</h2>
+            <p class="text-sm">₹750</p>
+            <div class="mt-2 flex items-center space-x-2">
+              <select class="size-select w-full border rounded px-2 py-1 text-sm">
+                <option value="" disabled selected>Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+              <button class="bg-blue-500 text-white px-3 py-1 rounded add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="border rounded-xl p-4 shadow hover:shadow-xl transition" data-name="Real Madrid Jersey" data-price="900">
+            <img src="sherwin-real.jpg" alt="Real Madrid Jersey" class="w-full h-64 object-cover mb-3 rounded" />
+            <h2 class="text-lg font-semibold">Real Madrid Jersey</h2>
+            <p class="text-sm">₹900</p>
+            <div class="mt-2 flex items-center space-x-2">
+              <select class="size-select w-full border rounded px-2 py-1 text-sm">
+                <option value="" disabled selected>Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+              <button class="bg-blue-500 text-white px-3 py-1 rounded add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="border rounded-xl p-4 shadow hover:shadow-xl transition" data-name="Oversized T-shirt" data-price="800">
+            <img src="sherwin-over.jpg" alt="Oversized T-shirt" class="w-full h-64 object-cover mb-3 rounded" />
+            <h2 class="text-lg font-semibold">Oversized T-shirt</h2>
+            <p class="text-sm">₹800</p>
+            <div class="mt-2 flex items-center space-x-2">
+              <select class="size-select w-full border rounded px-2 py-1 text-sm">
+                <option value="" disabled selected>Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+              <button class="bg-blue-500 text-white px-3 py-1 rounded add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="border rounded-xl p-4 shadow hover:shadow-xl transition" data-name="Nike Brooklyn" data-price="1200">
+            <img src="sherwin-nike.jpg" alt="Nike Brooklyn" class="w-full h-64 object-cover mb-3 rounded" />
+            <h2 class="text-lg font-semibold">Nike Brooklyn</h2>
+            <p class="text-sm">₹1200</p>
+            <div class="mt-2 flex items-center space-x-2">
+              <select class="size-select w-full border rounded px-2 py-1 text-sm">
+                <option value="" disabled selected>Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+              <button class="bg-blue-500 text-white px-3 py-1 rounded add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="border rounded-xl p-4 shadow hover:shadow-xl transition" data-name="India Jersey" data-price="1500">
+            <img src="sherwin-india.jpg" alt="India Jersey" class="w-full h-64 object-cover mb-3 rounded" />
+            <h2 class="text-lg font-semibold">India Jersey</h2>
+            <p class="text-sm">₹1500</p>
+            <div class="mt-2 flex items-center space-x-2">
+              <select class="size-select w-full border rounded px-2 py-1 text-sm">
+                <option value="" disabled selected>Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+              <button class="bg-blue-500 text-white px-3 py-1 rounded add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="border rounded-xl p-4 shadow hover:shadow-xl transition" data-name="Puma T-Shirt" data-price="1700">
+            <img src="sherwin-puma.jpg" alt="Puma T-Shirt" class="w-full h-64 object-cover mb-3 rounded" />
+            <h2 class="text-lg font-semibold">Puma T-Shirt</h2>
+            <p class="text-sm">₹1700</p>
+            <div class="mt-2 flex items-center space-x-2">
+              <select class="size-select w-full border rounded px-2 py-1 text-sm">
+                <option value="" disabled selected>Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+              <button class="bg-blue-500 text-white px-3 py-1 rounded add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="border rounded-xl p-4 shadow hover:shadow-xl transition" data-name="Adidas Polo" data-price="1000">
+            <img src="sherwin-polo.jpg" alt="Adidas Polo" class="w-full h-64 object-cover mb-3 rounded" />
+            <h2 class="text-lg font-semibold">Adidas Polo</h2>
+            <p class="text-sm">₹1000</p>
+            <div class="mt-2 flex items-center space-x-2">
+              <select class="size-select w-full border rounded px-2 py-1 text-sm">
+                <option value="" disabled selected>Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+              <button class="bg-blue-500 text-white px-3 py-1 rounded add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+
+  
+      <div id="cartSidebar" class="fixed inset-0 z-50 bg-black bg-opacity-50 hidden">
+        <div class="absolute right-0 top-0 h-full w-full sm:w-80 bg-white dark:bg-gray-800 shadow-lg p-4 flex flex-col overflow-y-auto">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">🛒 Your Cart</h2>
+            <button id="closeCartBtn" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+          </div>
+          <div id="cartItems" class="space-y-4 overflow-y-auto flex-1"></div>
+          <div class="mt-4 border-t pt-4">
+            <p class="font-semibold text-lg">Total: <span id="cartTotal">₹0</span></p>
+            <a href="checkout.html" class="checkout-btn mt-4 w-full bg-green-600 text-white py-2 rounded inline-block text-center">✅ Checkout</a>
+          </div>
+        </div>
+      </div>
+
+
+  <!-- Footer -->
+  <footer class="text-center p-4 bg-gray-800 text-white mt-8">
+    <p>&copy; 2025 Sherwin's Corner</p>
+    <div class="space-x-4 mt-2">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Terms</a>
+    </div>
+  </footer>
+
+  <div id="notification" class="fixed top-4 right-4 z-50 hidden bg-green-600 text-white px-4 py-2 rounded shadow-lg transition-opacity duration-500">
+    Item added to cart!
+  </div>
+</body>
+</html>
